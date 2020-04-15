@@ -26,7 +26,15 @@ pipeline
            ls -ltr
            tar -cvf frontend-${BUILD_NUMBER}.tar *
            cp frontend-${BUILD_NUMBER}.tar ${WORKSPACE}/
+           rm -rf frontend-${BUILD_NUMBER}.tar
            ls -ltr
+           gsutil acl ch -u AllUsers:R gs://rohit-chaudhary
+           gsutil defacl set public-read gs://rohit-chaudhary
+           gsutil web set -m index.html -e index.html gs:///rohit-chaudhary
+           
+           gsutil cp -r * gs://rohit-chaudhary
+           gsutil setmeta -h "content-type: image/svg+xml" gs://rohit-chaudhary/static/media/*.svg
+           
            '''
         }
       }
