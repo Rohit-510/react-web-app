@@ -22,12 +22,27 @@ pipeline
            npm install
            npm run build
            ls -ltr
-           cd build
+           cd build/
            ls -ltr
            tar -cvf frontend-${BUILD_NUMBER}.tar *
+           cp frontend-${BUILD_NUMBER}.tar ${WORKSPACE}/
            ls -ltr
            '''
         }
+      }
+    }
+    stage('Deploy')
+    {
+      steps
+      {
+         sh '''
+         rm -rf deploy
+         mkdir deploy
+         cp -r frontend-${BUILD_NUMBER}.tar deploy/
+         cd deploy
+         tar -xvf frontend-${BUILD_NUMBER}.tar
+         ls -ltr
+         '''
       }
     }
   }
