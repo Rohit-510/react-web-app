@@ -1,30 +1,24 @@
+
 pipeline
 {
- agent any
+  agent any
   
- tools
+  tools
   {
-    nodejs 'node' 
-    
+    nodejs 'node'
   }
-
- stages
+  stages
   {
    stage('Build')
     {
-     steps
+      steps
       {
-       script
+        script
         {
-         checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/vmgponly/react-web-app.git']]] 
-          
-          
-        
+           checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'chaudhary.rohit510@gmail.com', url: 'https://github.com/vmgponly/react-web-app.git']]])
         }
       }
-     
-    }  
-    
-  }  
-  
-}  
+    }
+  }
+
+}
