@@ -15,7 +15,7 @@ pipeline
         script
         {
            cleanWs()
-           checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'chaudhary.rohit510@gmail.com', url: 'https://github.com/vmgponly/react-web-app.git']]])
+           checkout([$class: 'GitSCM', branches: [[name: '${RepoBranch}']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'chaudhary.rohit510@gmail.com', url: 'https://github.com/Rohit-510/react-web-app.git']]])
            sh '''
            ls-ltr
            npm install
